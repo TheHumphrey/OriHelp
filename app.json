@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "orihelp",
+    "slug": "orihelp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
