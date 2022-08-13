@@ -10,6 +10,8 @@ import {
 } from 'native-base'
 
 import Logo from '../../assets/logo_secondary.svg'
+import React from 'react'
+import { Filters } from '../../components/templates'
 
 export const Home = () => {
   const { colors } = useTheme()
@@ -49,9 +51,19 @@ export const Home = () => {
             3
           </Text>
         </HStack>
+
+        <HStack>
+          <Filters
+            title="andamento"
+            type="open"
+          />
+          <Filters
+            title="finalizados"
+            type="closed"
+          />
+
+        </HStack>
       </VStack>
-
-
     </VStack>
   );
 }
