@@ -1,2 +1,3 @@
 export { Loading } from './Loading/Loading'
-export { Filters } from './Filters/Filters'
+export { DefaultLogo } from './DefaultLogo/DefaultLogo'
+export { HomeHeader } from './HomeHeader/HomeHeader'

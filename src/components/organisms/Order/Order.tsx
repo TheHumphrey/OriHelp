@@ -1,5 +1,8 @@
 import { Box, Circle, HStack, Text, useTheme, VStack, Pressable, IPressableProps } from 'native-base'
-import { ClockAfternoon, Hourglass, CircleWavyCheck } from 'phosphor-react-native'
+
+import { Hourglass, CircleWavyCheck } from 'phosphor-react-native'
+
+import { StackTextWithIcon } from '../../molecules'
 
 export type OrderStatusProps = 'open' | 'closed'
 
@@ -40,20 +43,9 @@ export const Order = ({ data, ...rest }: Props) => {
             Patrimônio: {data.patrimony}
           </Text>
 
-
-          <HStack alignItems="center">
-            <ClockAfternoon
-              size={15}
-              color={colors.gray[300]}
-            />
-            <Text
-              color="gray.200"
-              fontSize="xs"
-              ml={1}
-            >
-              {data.when}
-            </Text>
-          </HStack>
+          <StackTextWithIcon>
+            {data.when}
+          </StackTextWithIcon>
 
         </VStack>
 

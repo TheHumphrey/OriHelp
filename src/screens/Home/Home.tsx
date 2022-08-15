@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { SignOut, ChatTeardropText } from 'phosphor-react-native'
+import { ChatTeardropText } from 'phosphor-react-native'
 
 import {
   HStack,
   VStack,
-  IconButton,
   useTheme,
   Text,
   Heading,
@@ -12,10 +11,10 @@ import {
   Center
 } from 'native-base'
 
-import Logo from '../../assets/logo_secondary.svg'
-import { Filters } from '../../components/templates'
+import { Filters } from '../../components/organisms'
 import { Order, OrderProps, OrderStatusProps } from '../../components/organisms'
 import { Button } from '../../components/atoms'
+import { DefaultLogo, HomeHeader } from '../../components/templates'
 
 export const Home = () => {
   const [statusSelected, setStatusSelected] = useState<OrderStatusProps>('open')
@@ -38,39 +37,10 @@ export const Home = () => {
 
   return (
     <VStack flex={1} pb={6} bg="gray.700">
-      <HStack
-        w="full"
-        justifyContent="space-between"
-        alignItems="center"
-        bg="gray.700"
-        pt={12}
-        pb={5}
-        px={6}
-      >
-        <Logo />
-
-        <IconButton
-          icon={<SignOut size={26} color={colors.gray[300]} />}
-        />
-
-      </HStack>
+      <DefaultLogo />
 
       <VStack flex={1} px={6}>
-        <HStack
-          w="full"
-          mt={6}
-          mb={4}
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Heading color="gray.100">
-            Meus chamados
-          </Heading>
-
-          <Text color="gray.200">
-            3
-          </Text>
-        </HStack>
+        <HomeHeader orderLength={orders.length} />
 
         <HStack space={3} mb={8}>
           <Filters
