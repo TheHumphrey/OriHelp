@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SignOut } from 'phosphor-react-native'
+import { SignOut, ChatTeardropText } from 'phosphor-react-native'
 
 import {
   HStack,
@@ -8,21 +8,31 @@ import {
   useTheme,
   Text,
   Heading,
-  FlatList
+  FlatList,
+  Center
 } from 'native-base'
 
 import Logo from '../../assets/logo_secondary.svg'
 import { Filters } from '../../components/templates'
 import { Order, OrderProps, OrderStatusProps } from '../../components/organisms'
+import { Button } from '../../components/atoms'
 
 export const Home = () => {
   const [statusSelected, setStatusSelected] = useState<OrderStatusProps>('open')
-  const [orders, setOrders] = useState<OrderProps[]>([{
-    id: '123',
-    patrimony: '3213131',
-    when: '18/07/2022 as 10:00',
-    status: 'open'
-  }])
+  const [orders, setOrders] = useState<OrderProps[]>([
+    {
+      id: '123',
+      patrimony: '3213131',
+      when: '18/07/2022 as 10:00',
+      status: 'open'
+    },
+    {
+      id: '12',
+      patrimony: '5134515',
+      when: '18/07/2022 as 10:00',
+      status: 'closed'
+    }
+  ])
 
   const { colors } = useTheme()
 
@@ -81,8 +91,24 @@ export const Home = () => {
         <FlatList
           data={orders}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => (<Order data={item} />)}
+          renderItem={({ item }) => item.status === statusSelected && (<Order data={item} />)}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 100 }}
+          ListEmptyComponent={() => (
+            <Center>
+              <ChatTeardropText
+                color={colors.gray[300]}
+                size={40}
+              />
+              <Text color="gray.300" fontSize="xl" mt={6} textAlign="center" >
+                Você ainda não possui {'\n'}
+                solicitações {statusSelected === 'open' ? 'em andamento' : 'finalizados'}
+              </Text>
+            </Center>
+          )}
         />
+
+        <Button title="Nova solicitação" />
       </VStack>
     </VStack>
   );
