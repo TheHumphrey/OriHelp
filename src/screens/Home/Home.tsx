@@ -13,10 +13,11 @@ import {
 
 import Logo from '../../assets/logo_secondary.svg'
 import { Filters } from '../../components/templates'
+import { Order, OrderProps, OrderStatusProps } from '../../components/organisms'
 
 export const Home = () => {
-  const [statusSelected, setStatusSelected] = useState<'open' | 'closed'>('open')
-  const [orders, setOrders] = useState([{
+  const [statusSelected, setStatusSelected] = useState<OrderStatusProps>('open')
+  const [orders, setOrders] = useState<OrderProps[]>([{
     id: '123',
     patrimony: '3213131',
     when: '18/07/2022 as 10:00',
@@ -80,7 +81,7 @@ export const Home = () => {
         <FlatList
           data={orders}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <Text>{item.patrimony}</Text>}
+          renderItem={({ item }) => (<Order data={item} />)}
         />
       </VStack>
     </VStack>
