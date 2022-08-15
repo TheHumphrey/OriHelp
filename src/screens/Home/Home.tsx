@@ -11,10 +11,9 @@ import {
   Center
 } from 'native-base'
 
-import { Filters } from '../../components/organisms'
 import { Order, OrderProps, OrderStatusProps } from '../../components/organisms'
 import { Button } from '../../components/atoms'
-import { DefaultLogo, HomeHeader } from '../../components/templates'
+import { DefaultLogo, HomeHeader, Filters } from '../../components/templates'
 
 export const Home = () => {
   const [statusSelected, setStatusSelected] = useState<OrderStatusProps>('open')
@@ -42,21 +41,10 @@ export const Home = () => {
       <VStack flex={1} px={6}>
         <HomeHeader orderLength={orders.length} />
 
-        <HStack space={3} mb={8}>
-          <Filters
-            title="andamento"
-            type="open"
-            onPress={() => setStatusSelected('open')}
-            isActive={statusSelected === 'open'}
-          />
-
-          <Filters
-            title="finalizados"
-            type="closed"
-            onPress={() => setStatusSelected('closed')}
-            isActive={statusSelected === 'closed'}
-          />
-        </HStack>
+        <Filters
+          setStatusSelected={setStatusSelected}
+          statusSelected={statusSelected}
+        />
 
         <FlatList
           data={orders}

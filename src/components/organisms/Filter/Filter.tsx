@@ -6,7 +6,7 @@ type Props = IButtonProps & {
   type: 'open' | 'closed';
 }
 
-export const Filters = ({ title, isActive = false, type, ...rest }: Props) => {
+export const Filter = ({ title, isActive = false, type, ...rest }: Props) => {
   const { colors } = useTheme()
 
   const colorType = type === 'open' ? colors.secondary[700] : colors.green[300]
