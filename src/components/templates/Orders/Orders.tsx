@@ -1,16 +1,10 @@
-import {
-  FlatList,
-  Center,
-  Text,
-  useTheme
-} from 'native-base'
-
-import { ChatTeardropText } from 'phosphor-react-native'
+import { FlatList } from 'native-base'
 
 import {
   Order,
   OrderProps,
-  OrderStatusProps
+  OrderStatusProps,
+  EmptyOrder
 } from '../../organisms';
 
 type Props = {
@@ -19,8 +13,6 @@ type Props = {
 }
 
 export const Orders = ({ data, status }: Props) => {
-  const { colors } = useTheme()
-
   return (
     <FlatList
       data={data}
@@ -28,18 +20,7 @@ export const Orders = ({ data, status }: Props) => {
       renderItem={({ item }) => item.status === status && (<Order data={item} />)}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingBottom: 100 }}
-      ListEmptyComponent={() => (
-        <Center>
-          <ChatTeardropText
-            color={colors.gray[300]}
-            size={40}
-          />
-          <Text color="gray.300" fontSize="xl" mt={6} textAlign="center" >
-            Você ainda não possui {'\n'}
-            solicitações {status === 'open' ? 'em andamento' : 'finalizados'}
-          </Text>
-        </Center>
-      )}
+      ListEmptyComponent={() => (<EmptyOrder status={status === 'open' ? 'em andamento' : 'finalizados'} />)}
     />
   );
 }
