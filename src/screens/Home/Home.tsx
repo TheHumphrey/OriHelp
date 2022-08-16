@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 import { VStack } from 'native-base'
 
@@ -25,6 +26,12 @@ export const Home = () => {
   const [statusSelected, setStatusSelected] = useState<OrderStatusProps>('open')
   const [orders, setOrders] = useState<OrderProps[]>(initialTestState)
 
+  const navigation = useNavigation()
+
+  const handleNewOrder = () => {
+    navigation.navigate('new')
+  }
+
   return (
     <VStack flex={1} pb={6} bg="gray.700">
       <DefaultLogo />
@@ -39,7 +46,7 @@ export const Home = () => {
 
         <Orders data={orders} status={statusSelected} />
 
-        <Button title="Nova solicitação" />
+        <Button title="Nova solicitação" onPress={handleNewOrder} />
       </VStack>
     </VStack>
   );
