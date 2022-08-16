@@ -32,6 +32,10 @@ export const Home = () => {
     navigation.navigate('new')
   }
 
+  const handleOpenDetails = (orderId: string) => {
+    navigation.navigate('details', { orderId })
+  }
+
   return (
     <VStack flex={1} pb={6} bg="gray.700">
       <DefaultLogo />
@@ -44,7 +48,11 @@ export const Home = () => {
           statusSelected={statusSelected}
         />
 
-        <Orders data={orders} status={statusSelected} />
+        <Orders
+          data={orders}
+          status={statusSelected}
+          handleOrderDetails={handleOpenDetails}
+        />
 
         <Button title="Nova solicitação" onPress={handleNewOrder} />
       </VStack>
